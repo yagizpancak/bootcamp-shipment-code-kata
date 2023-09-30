@@ -1,7 +1,9 @@
 import com.trendyol.shipment.Basket;
 import com.trendyol.shipment.Product;
 import com.trendyol.shipment.ShipmentSize;
+import com.trendyol.shipment.exception.BasketEmptyException;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -15,6 +17,7 @@ import java.util.stream.Stream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
 class BasketTest {
@@ -57,5 +60,11 @@ class BasketTest {
                 Arguments.of(Arrays.asList(ShipmentSize.X_LARGE, ShipmentSize.X_LARGE, ShipmentSize.X_LARGE), ShipmentSize.X_LARGE),
                 Arguments.of(Arrays.asList(ShipmentSize.LARGE, ShipmentSize.LARGE, ShipmentSize.LARGE), ShipmentSize.X_LARGE)
         );
+    }
+
+    @Test
+    void shouldThrowExceptionWhenBasketEmpty() {
+        Basket basket = new Basket();
+        assertThrows(BasketEmptyException.class, () -> basket.getShipmentSize());
     }
 }
