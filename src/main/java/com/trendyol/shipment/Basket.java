@@ -1,5 +1,7 @@
 package com.trendyol.shipment;
 
+import com.trendyol.shipment.exception.BasketEmptyException;
+
 import java.util.List;
 
 public class Basket {
@@ -7,6 +9,9 @@ public class Basket {
     private List<Product> products;
 
     public ShipmentSize getShipmentSize() {
+        if (products.isEmpty()) {
+            throw new BasketEmptyException();
+        }
         return null;
     }
 
