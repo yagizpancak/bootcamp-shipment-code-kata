@@ -50,6 +50,6 @@ public class ShipmentHandler {
 		return products.stream()
 				.map(Product::getSize)
 				.max(ShipmentSize::compareTo)
-				.orElse(null);
+				.orElse(ShipmentSize.SMALL);
 	}
 }
