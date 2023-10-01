@@ -19,7 +19,7 @@ public class ShipmentHandler {
 	}
 
 	public ShipmentSize getShipmentSize() {
-		if (products == null || products.isEmpty()) {
+		if (isProductsNullOrEmpty()) {
 			throw new BasketEmptyException();
 		}
 
@@ -30,6 +30,10 @@ public class ShipmentHandler {
 		}
 
 		return findLargestSizeProduct();
+	}
+
+	private boolean isProductsNullOrEmpty() {
+		return products == null || products.isEmpty();
 	}
 
 	private Optional<ShipmentSize> getSameSizeExceedThreshold() {

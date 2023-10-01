@@ -65,6 +65,6 @@ class BasketTest {
     @Test
     void shouldThrowExceptionWhenBasketEmpty() {
         Basket basket = new Basket();
-        assertThrows(BasketEmptyException.class, () -> basket.getShipmentSize());
+        assertThrows(BasketEmptyException.class, basket::getShipmentSize);
     }
 }
